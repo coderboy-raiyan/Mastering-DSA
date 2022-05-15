@@ -4,13 +4,9 @@ To solve a problem, it is very important to choose the most efficient algorithm 
 
 ### Space Complexity
 
----
-
 The total **amount of the computer's memory** used by an algorithm when it is executed is the space complexity of that algorithm.
 
 ### Time Complexity
-
----
 
 So, the time complexity is the number of operations an algorithm performs to complete its task (considering that each operation takes the same amount of time). The algorithm that performs the task in the smallest number of operations is considered the most efficient one in terms of the time complexity. However, the space and time complexity are also affected by factors such as your operating system and hardware, but we are not including them in this discussion.
 
