@@ -1,7 +1,5 @@
 ## What is Space and Time Complexity?
 
----
-
 To solve a problem, it is very important to choose the most efficient algorithm from many possible algorithms. This is where space and time complexity acts as a measurement scale for algorithms. We compare the algorithms on the basis of their space (amount of memory) and time complexity (number of operations).
 
 ### Space Complexity
