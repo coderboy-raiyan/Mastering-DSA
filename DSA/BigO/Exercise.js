@@ -4,25 +4,25 @@
 
 */
 
-// const tweets = ["hi", "mom", "friends"];
+const tweets = ["hi", "mom", "friends"];
 
-// function findLatestAndOldest(tweets) {
-//   const latest = tweets[tweets.length - 1];
-//   const oldest = tweets[0];
+function findLatestAndOldest(tweets) {
+  const latest = tweets[tweets.length - 1];
+  const oldest = tweets[0];
 
-//   return {
-//     latest,
-//     oldest,
-//   };
-// }
-// console.log(findLatestAndOldest(tweets)); //O(1)
+  return {
+    latest,
+    oldest,
+  };
+}
+console.log(findLatestAndOldest(tweets)); //O(1)
 
 /*
 * Problem no - 2
   Find and compare Dates
 
 */
-const tweets = [
+const tweetsWithDate = [
   { tweet: "h1", date: 2010 },
   { tweet: "mon", date: 2014 },
   { tweet: "friends", date: 2022 },
@@ -37,4 +37,4 @@ function findCompare(tweets) {
   });
 }
 
-console.log(findCompare(tweets)); //O(n ^ 2)
+console.log(findCompare(tweetsWithDate)); //O(n ^ 2)
