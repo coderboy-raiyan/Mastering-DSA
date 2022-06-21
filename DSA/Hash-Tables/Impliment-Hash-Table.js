@@ -36,11 +36,23 @@ class myHasHTable {
 
     return this.data;
   }
+
+  key() {
+    let array = [];
+    for (let i in this.data) {
+      if (this.data[i]) {
+        array.push(this.data[i][0][0]);
+      }
+    }
+    return array;
+  }
 }
 
-const obj1 = new myHasHTable(2);
+const obj1 = new myHasHTable(10);
 
-console.log(obj1.set("apples", 1000));
-console.log(obj1.set("grapes", 4000));
+console.log(obj1.set("apples", 1000)); // O(1)
+console.log(obj1.set("grapes", 4000)); // O(1)
+console.log(obj1.set("oranges", 9000)); // O(1)
+console.log(obj1.get("oranges")); // O(1) or O(n) it can be anything depending on the conclusion memory allocation means if we do not have sufficient memory it will keep pushing in one allocation where we need to run loops for find the value
 
-console.log(obj1.get("apples"));
+console.log(obj1.key()); //O(n)
