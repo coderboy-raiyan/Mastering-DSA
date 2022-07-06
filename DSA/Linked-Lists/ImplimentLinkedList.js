@@ -11,9 +11,9 @@ class MyLinkedList {
       value: value,
       next: null,
     };
-    (this.tail = this.head), (this.length = 1);
+    this.tail = this.head;
+    this.length = 1;
   }
-
   append(value) {
     const newNode = new Node(value);
     this.tail.next = newNode;
@@ -31,82 +31,75 @@ class MyLinkedList {
   }
   printList() {
     const array = [];
-    let currentHead = this.head;
-    while (currentHead !== null) {
-      array.push(currentHead.value);
-      currentHead = currentHead.next;
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      currentNode = currentNode.next;
     }
+
     return array;
   }
 
   insert(index, value) {
-    if (index >= this.length) {
-      return this.append(value);
+    const newNode = new Node(value);
+    if (index > this.length) {
+      this.append(value);
+      this.length++;
+      return this.printList();
     }
     if (index === 0) {
-      return this.prepend(value);
+      this.prepend(value);
+      this.length++;
+      return this.printList();
     }
-
-    const newNode = new Node(value);
     const leader = this.findTheLeader(index - 1);
-    const holdPointer = this.findHoldPointer(index);
+
+    if (index === this.length) {
+      this.append(value);
+      this.length++;
+      return this.printList();
+    }
+    const currentHoldingNode = leader.next;
     leader.next = newNode;
-    newNode.next = holdPointer;
+    newNode.next = currentHoldingNode;
     this.length++;
     return this.printList();
   }
 
   remove(index) {
-    if (index === this.length) {
-      const leader = this.findTheLeader(index - 2);
-      (leader.next = null), (this.tail = leader);
-      this.length--;
-
-      return this.printList();
-    }
     if (index === 0) {
-      this.head = this.head.next;
-
+      const leader = this.findTheLeader(index);
+      this.head = leader.next;
       return this.printList();
     }
-
-    if (index !== 0 || index !== this.length) {
-      const leader = this.findTheLeader(index - 1);
-      const unwantedNode = leader.next;
-      leader.next = unwantedNode.next;
-      this.length--;
+    if (index === this.length) {
+      const leader = this.findTheLeader(index - 3);
+      leader.next = null;
+      this.tail = leader;
       return this.printList();
     }
+    const leader = this.findTheLeader(index - 1);
+    const unWantedNode = leader.next;
+    leader.next = unWantedNode.next;
+    this.length--;
+    return this.printList();
   }
-
   findTheLeader(index) {
+    let currentNode = this.head;
     let counter = 0;
-    let currentHead = this.head;
     while (counter !== index) {
-      currentHead = currentHead.next;
+      currentNode = currentNode.next;
       counter++;
     }
-    return currentHead;
-  }
-  findHoldPointer(index) {
-    let counter = 0;
-    let currentHead = this.head;
-    while (counter !== index) {
-      currentHead = currentHead.next;
-      counter++;
-    }
-    return currentHead;
+    return currentNode;
   }
 }
 
-// [1,24,6,7]
+// [20, 1 , 10]
 
-const myLinkedList = new MyLinkedList(5);
-
-console.log(myLinkedList.append(10));
-console.log(myLinkedList.append(20));
-console.log(myLinkedList.append(30));
-console.log(myLinkedList.prepend(15));
-console.log(myLinkedList.insert(2, 33));
-console.log(myLinkedList.remove(myLinkedList.length));
+const myLinkedList = new MyLinkedList(10);
+console.log(myLinkedList.append(1));
+console.log(myLinkedList.prepend(20));
+console.log(myLinkedList.insert(myLinkedList.length, 80));
 console.log(myLinkedList.remove(0));
